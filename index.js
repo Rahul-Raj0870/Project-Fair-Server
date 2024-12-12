@@ -9,7 +9,7 @@ pfServer.use(cors())
 pfServer.use(express.json())
 pfServer.use(router)
 pfServer.use('/uploads',express.static('./uploads'))
-const PORT = 3000 || process.env.PORT
+const PORT = 3000 
 
 pfServer.listen(PORT,()=>{
     console.log(`Project Fair Server started at port : ${PORT} and waiting for client request!!!`);
