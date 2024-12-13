@@ -1,24 +1,23 @@
-const jwt = require('jsonwebtoken');
+const jwt  = require('jsonwebtoken')
 
-const jwtMiddleware = (req, res, next) => {
-    console.log("Inside jwtMiddleware");
-
-    // Logic to authorize user
-    const token = req.headers["authorization"].split(" ")[1]; // Fixed the way to access the 'authorization' header
+const jwtMiddleware = (req,res,next)=>{
+    console.log("Inside jwtMiddleware");  
+//logic authorise user
+    const token = req.headers["authorization"].split(" ")[1]
     console.log(token);
-    if (token) {
+    if(token){
         //verify
-        try{
-            const jwtResponse = jwt.verify(token,process.env.JWTPASSWORD)
-            console.log(jwtResponse);
-            req.userId = jwtResponse.userId
-            next() 
-        }catch{
-            res.status(401).json("Authorisation failed...please login")
-        }
-    } else {
-        res.status(404).json("Authorization failed....Token is missing!!!!");
+      try{
+        const jwtResponse =  jwt.verify(token,process.env.JWTPASSWORD)
+        console.log(jwtResponse);
+        req.userId = jwtResponse.userId
+        next()
+      }catch(err){
+        res.status(401).json("Authorisation failed... Please Login!!!")
+      }
+    }else{
+        res.status(404).json("Authorisation failed... Token is Missing!!!")
     }
-};
+}
 
-module.exports = jwtMiddleware;
+module.exports = jwtMiddleware

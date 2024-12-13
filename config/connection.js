@@ -1,12 +1,10 @@
 const mongoose = require('mongoose')
+
 const connection_string = process.env.CONNECTIONSTRING
 
 mongoose.connect(connection_string).then((res)=>{
-    console.log("Mongodb Atlas Connected Successfully with Pfserver");
-    
+    console.log("MONGODB ATLAS CONNECTED SUCCESSFULLY WITH PFSERVER");
 }).catch(err=>{
-    console.log("Mongodb Atlas Connection Failed!!");
-    console.log(err);
-    
-    
+    console.log("MONGODB ATLAS Connection failed!!");
+    console.log(err);    
 })
